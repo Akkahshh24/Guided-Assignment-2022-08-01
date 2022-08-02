@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3" *ngFor="let p of products">
+
+            <div class="card" style="margin:20px 0px 20px 0px">
+                <img src={{p.imageUrl}} class="card-img-top" style="height:250px;" data-bs-toggle="modal" [attr.data-bs-target]="'#modal'+p.id">
+                
+                <div class="card-body" data-bs-toggle="modal" [attr.data-bs-target]="'#modal'+p.id">
+                    <h6 class="card-title">{{p.name}}</h6>
+                    <p class="card-text">{{p.unitPrice | currency:"INR"}}</p>
+                </div>
+
+                <div class="card-body" style="margin-top:-10px">
+                    <a class="btn btn-primary" routerLink="">Add to Cart</a>
+                </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" [attr.id]="'modal'+p.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{p.name}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <img src="{{p.imageUrl}}" style="height:300px; margin-left:50px">
+                                    </div>
+                                    <div class="col">
+                                        <p><b>Product Details</b></p>  
+                                        <p>{{p.description}}</p>    
+                                        <img src="https://t4.ftcdn.net/jpg/03/20/26/81/360_F_320268137_E6lddAdx5yjdPjipfuMHonykhoYZkGko.jpg" width="100">
+                                        <h3>{{p.unitPrice | currency:"INR"}}</h3>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="router.url == '/shop'" class="modal-footer">
+                                <button type="button" class="btn" style="background-color:darkorange">Add to Cart</button>
+                                <button type="button" class="btn" style="background-color:gold">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
